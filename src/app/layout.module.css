@@ -1,0 +1,32 @@
+.header {
+  position: sticky;
+  top: 1em;
+  background-color: #010101;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 0.5em;
+}
+
+.main {
+  background-color: #010101;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 0.5em;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 600px) {
+  .title {
+    justify-content: center;
+  }
+
+  .title h1 {
+    font-size: 1.5em;
+  }
+}
