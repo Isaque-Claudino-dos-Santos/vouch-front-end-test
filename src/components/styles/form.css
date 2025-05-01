@@ -1,0 +1,23 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.form_input {
+  width: 100%;
+  padding: 0.32em;
+  font-size: 1.2em;
+}
+
+.form_textarea {
+  width: 100%;
+  min-height: 120px;
+  font-size: 1.2em;
+}

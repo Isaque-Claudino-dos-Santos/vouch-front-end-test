@@ -1,0 +1,31 @@
+.quickEdit {
+  width: 100%;
+  display: flex;
+  gap: 1em;
+}
+
+.quickEdit_buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.form_button {
+  border: none;
+  cursor: pointer;
+  padding: 0.32em 0.5em;
+  border-radius: 0.5em;
+}
+
+.form_button-save {
+  background-color: #0070f3;
+}
+
+.form_button-cancel {
+  background-color: #ee2222;
+}
+
+.form_button:hover {
+  opacity: 0.8;
+}

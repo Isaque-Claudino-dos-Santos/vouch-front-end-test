@@ -1,0 +1,37 @@
+.taskCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background-color: #202020;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 0.5em;
+}
+
+.taskCard_id {
+  font-size: 1.2em;
+  font-weight: lighter;
+}
+
+.taskCard_status {
+  height: max-content;
+  background-color: #2222ee;
+  padding: 0.24em;
+  border-radius: 0.4em;
+  font-size: 0.8em;
+}
+
+.taskCard_title {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.taskCard_description {
+  font-size: 1em;
+}
+
+.taskCard_delete {
+  display: flex;
+  align-self: flex-end;
+  gap: 0.5em;
+}
