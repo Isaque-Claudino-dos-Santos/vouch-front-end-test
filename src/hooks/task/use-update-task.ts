@@ -15,6 +15,7 @@ export default function useUpdateTask(options: UseUpdateTaskOptions) {
             return;
         }
 
+        updateTask(task)
         setState(getTasks());
     }
 

@@ -1,7 +1,6 @@
 
 enum TaskStatusEnum {
-    BACKLOG = 'BACKLOG',
-    IN_PROGRESS = 'IN_PROGRESS',
+    TODO = 'TODO',
     COMPLETED = 'COMPLETED',
 }
 

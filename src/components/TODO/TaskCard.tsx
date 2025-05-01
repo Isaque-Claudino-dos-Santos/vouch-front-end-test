@@ -5,8 +5,6 @@ import Input from "../form/Input";
 import Textarea from "../form/Textarea";
 import { Check, Copy, Pen, Trash, X } from "lucide-react";
 import { useState } from "react";
-import useDeleteTaskById from "@/hooks/task/use-delete-task-by-id";
-import useUpdateTask from "@/hooks/task/use-update-task";
 
 export type TaskCardProps = {
   task: Task;
@@ -17,6 +15,7 @@ export type TaskCardProps = {
 export default function TaskCard(props: TaskCardProps) {
   const { task, onUpdate, onDelete } = props;
 
+  const [inEditMode, setInEditMode] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   const handleCopyTitle = () => {
@@ -62,6 +61,7 @@ export default function TaskCard(props: TaskCardProps) {
           task.title = title ?? "";
           onUpdate(task);
         }}
+        inEditMode={inEditMode}
       />
 
       <QuickEdit
@@ -72,10 +72,17 @@ export default function TaskCard(props: TaskCardProps) {
           task.description = description ?? "";
           onUpdate(task);
         }}
+        inEditMode={inEditMode}
       />
 
       <div className="taskCard_delete">
-        <Pen cursor="pointer" color="#efefef" />
+        <Pen
+          cursor="pointer"
+          color="#efefef"
+          onClick={() => {
+            setInEditMode(!inEditMode);
+          }}
+        />
 
         {confirmDelete ? (
           <>

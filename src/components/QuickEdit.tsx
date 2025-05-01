@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/quick-edit.css";
 
 type QuickEditProps = {
@@ -10,8 +10,12 @@ type QuickEditProps = {
 };
 
 export default function QuickEdit(props: QuickEditProps) {
-  const { input, id, preview, onSubmit, inEditMode } = props;
-  const [isEditiable, setIsEditiable] = React.useState(inEditMode);
+  const { input, id, preview, onSubmit, inEditMode = false } = props;
+  const [isEditiable, setIsEditiable] = useState(false);
+
+  useEffect(() => {
+    setIsEditiable(inEditMode);
+  }, [inEditMode]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
