@@ -1,53 +1,56 @@
-'use client';
+"use client";
 
 import Task from "@/models/Task";
-
+import { hasWindow } from "@/utils/functions";
 
 function autoIncrementTaskId(): number {
-    const taskId = Number(localStorage.getItem("taskId"));
+  const taskId = Number(localStorage.getItem("taskId"));
 
+  if (!taskId || isNaN(taskId)) {
+    localStorage.setItem("taskId", "0");
+  }
 
-    if (!taskId || isNaN(taskId)) {
-        localStorage.setItem("taskId", "0");
-    }
+  const newTaskId = Number(localStorage.getItem("taskId")) + 1;
 
-    const newTaskId = Number(localStorage.getItem("taskId")) + 1;
+  localStorage.setItem("taskId", newTaskId.toString());
 
-    localStorage.setItem("taskId", newTaskId.toString());
-
-    return newTaskId;
+  return newTaskId;
 }
 
 export function getTasks(): Task[] {
-    return JSON.parse(localStorage.getItem("tasks") ?? "[]");
+  if (!hasWindow()) return [];
+
+  return JSON.parse(localStorage.getItem("tasks") ?? "[]");
 }
 
 export function saveTask(task: Task): void {
-    const taskId = autoIncrementTaskId();
-    task.id = taskId;
+  const taskId = autoIncrementTaskId();
+  task.id = taskId;
 
-    const tasks = getTasks();
+  const tasks = getTasks();
 
-    tasks.push(task);
+  tasks.push(task);
 
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 export function deleteTask(taskId: number): void {
-    const tasks = getTasks();
+  const tasks = getTasks();
 
-    const newTasks = tasks.filter((task) => task.id !== taskId);
+  const newTasks = tasks.filter((task) => task.id !== taskId);
 
-    localStorage.setItem("tasks", JSON.stringify(newTasks));
+  localStorage.setItem("tasks", JSON.stringify(newTasks));
 }
 
 export function updateTask(task: Task): void {
-    const tasks = getTasks();
+  const tasks = getTasks();
 
-    const taskIndex = tasks.findIndex((t) => t.id === task.id);
+  const taskIndex = tasks.findIndex((t) => t.id === task.id);
 
-    if (taskIndex === -1) { return; }
+  if (taskIndex === -1) {
+    return;
+  }
 
-    tasks[taskIndex] = task;
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+  tasks[taskIndex] = task;
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }

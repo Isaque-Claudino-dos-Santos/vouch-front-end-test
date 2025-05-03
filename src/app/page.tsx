@@ -1,5 +1,3 @@
-"use client";
-
 import CountDown from "@/components/CountDown";
 import TasksList from "@/components/TODO/TasksList";
 

@@ -1,3 +1,5 @@
+'use client'
+
 import "../styles/task-card.css";
 import Task from "@/models/Task";
 import QuickEdit from "../QuickEdit";
@@ -38,7 +40,7 @@ export default function TaskCard(props: TaskCardProps) {
 
   return (
     <div className="taskCard">
-      <header style={{ display: "flex", justifyContent: "space-between" }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ display: "flex", gap: "1rem" }}>
           <h3 className="taskCard_id"># {task.id}</h3>
 
@@ -46,7 +48,7 @@ export default function TaskCard(props: TaskCardProps) {
         </div>
 
         <input type="checkbox" style={{ alignSelf: "flex-end" }} />
-      </header>
+      </div>
 
       <QuickEdit
         id="title"
