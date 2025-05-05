@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./styles/quick-edit.css";
+import ConfirmOrCancel from "./confirm-or-cancel.component";
 
 type QuickEditProps = {
   id: string;
@@ -41,16 +42,7 @@ export default function QuickEdit(props: QuickEditProps) {
         {input}
 
         <div className="quickEdit_buttons">
-          <button type="submit" className="form_button form_button-save">
-            SAVE
-          </button>
-          <button
-            type="reset"
-            className="form_button form_button-cancel"
-            onClick={handleCancel}
-          >
-            CANCEL
-          </button>
+          <ConfirmOrCancel onCancel={handleCancel} isSubmitable />
         </div>
       </form>
     );

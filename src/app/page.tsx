@@ -1,11 +1,9 @@
-import CountDown from "@/components/CountDown";
-import TasksList from "@/components/TODO/TasksList";
+import CountDown from "@/components/count-down.component";
+import TasksList from "@/components/to-do/tasks-list.component";
 
 export default function Home() {
   return (
     <section>
-      <CountDown />
-
       <TasksList />
     </section>
   );

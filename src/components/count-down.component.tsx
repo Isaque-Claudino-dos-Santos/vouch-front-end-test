@@ -5,7 +5,12 @@ import { Pause, Play, RotateCcw } from "lucide-react";
 import { useEffect } from "react";
 import styles from "./styles/count-down.module.css";
 
-export default function CountDown() {
+export type CountDownProps = {
+  className?: string;
+};
+
+export default function CountDown(props: CountDownProps) {
+  const { className } = props;
   const { time, reset, start, stop, stopOnFinish, isFinish, isRunning } =
     useCountDown(10);
 
@@ -30,7 +35,7 @@ export default function CountDown() {
   }, [time]);
 
   return (
-    <div className={styles.countDown}>
+    <div className={[styles.countDown, className].join(" ")}>
       {isAvailableToPlay && (
         <div onClick={handleStart}>
           <Play />

@@ -1,4 +1,6 @@
 .header {
+  display: flex;
+  justify-content: space-between;
   position: sticky;
   top: 1em;
   background-color: #010101a1;
@@ -23,8 +25,10 @@
 }
 
 @media screen and (max-width: 600px) {
-  .title {
+  .header {
     justify-content: center;
+    flex-direction: column;
+    gap: .5em;
   }
 
   .title h1 {

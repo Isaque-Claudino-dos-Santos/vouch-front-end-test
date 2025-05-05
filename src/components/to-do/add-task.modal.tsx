@@ -2,8 +2,10 @@
 
 import Task from "@/models/Task";
 import { X } from "lucide-react";
-import Input from "../form/Input";
-import Textarea from "../form/Textarea";
+import Input from "../form/input.component";
+import Textarea from "../form/textarea.component";
+import Form from "../form/form.component";
+import Button from "../button.component";
 
 export type AddTaskModalProps = {
   setVisible: (visible: boolean) => void;
@@ -34,26 +36,24 @@ export default function AddTaskModal(props: AddTaskModalProps) {
 
   return (
     <section className="modal">
-      <form className="form modal-content" onSubmit={handleSubmit}>
-        <X
-          onClick={handleClose}
-          style={{ alignSelf: "flex-end", cursor: "pointer" }}
-        />
+      <div className="modal-content">
+        <Form onSubmit={handleSubmit}>
+          <X
+            onClick={handleClose}
+            style={{ alignSelf: "flex-end", cursor: "pointer" }}
+          />
 
-        <div className="form_group">
-          <label htmlFor="title">Task Name</label>
-          <Input type="text" id="title" name="title" autoFocus />
-        </div>
+          <Input type="text" id="title" label="Task Name" autoFocus />
 
-        <div className="form_group">
-          <label htmlFor="description">Task Description</label>
-          <Textarea id="description" name="description" />
-        </div>
+          <Textarea
+            id="description"
+            label="Task Description"
+            name="description"
+          />
 
-        <button type="submit" className="form_button">
-          ADD TASK
-        </button>
-      </form>
+          <Button type="submit"> ADD TASK</Button>
+        </Form>
+      </div>
     </section>
   );
 }

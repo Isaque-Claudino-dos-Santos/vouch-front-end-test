@@ -1,14 +1,15 @@
 "use client";
 
 import useGetTasksPaginated from "@/hooks/task/use-get-tasks-paginated";
-import TaskCard from "./TaskCard";
+import TaskCard from "./task-card.component";
 import { Plus } from "lucide-react";
 import Task from "@/models/Task";
 import { useEffect, useState } from "react";
-import AddTaskModal from "../modal/AddTaskModal";
 import useCreateTask from "@/hooks/task/use-task-create";
 import useDeleteTaskById from "@/hooks/task/use-delete-task-by-id";
 import useUpdateTask from "@/hooks/task/use-update-task";
+import AddTaskModal from "./add-task.modal";
+import styles from './styles/task-list.module.css'
 
 export default function TasksList() {
   const [isClient, setIsClient] = useState(false);
@@ -54,8 +55,8 @@ export default function TasksList() {
 
       <Plus onClick={handleOnClickPlus} />
 
-      <ul>
-        {tasks?.map((task, index) => (
+      <ul className={styles.list}>
+        {tasks?.toReversed().map((task, index) => (
           <TaskCard
             key={index}
             task={task}
