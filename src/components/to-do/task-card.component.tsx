@@ -59,25 +59,29 @@ export default function TaskCard(props: TaskCardProps) {
 
       <main className={styles.main}>
         <section className={styles.content}>
-          <QuickEdit
-            id="title"
-            input={<Input type="text" defaultValue={task.title} name="title" />}
-            preview={
-              <h2 className="taskCard_title">
-                {task.title}{" "}
-                <Copy
-                  onClick={handleCopyTitle}
-                  className="copy-icon"
-                  size={16}
-                />{" "}
-              </h2>
-            }
-            onSubmit={(title) => {
-              task.title = title ?? "";
-              onUpdate(task);
-            }}
-            inEditMode={inEditMode}
-          />
+          {!!task.title || inEditMode && (
+            <QuickEdit
+              id="title"
+              input={
+                <Input type="text" defaultValue={task.title} name="title" />
+              }
+              preview={
+                <h2 className="taskCard_title">
+                  {task.title}{" "}
+                  <Copy
+                    onClick={handleCopyTitle}
+                    className="copy-icon"
+                    size={16}
+                  />{" "}
+                </h2>
+              }
+              onSubmit={(title) => {
+                task.title = title ?? "";
+                onUpdate(task);
+              }}
+              inEditMode={inEditMode}
+            />
+          )}
 
           <QuickEdit
             id="description"

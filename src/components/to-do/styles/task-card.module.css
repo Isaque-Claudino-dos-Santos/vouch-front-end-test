@@ -69,4 +69,12 @@
   .container {
     font-size: .8em;
   }
+
+  .deleteAndEdit {
+    max-width: 45px;
+  }
+
+  .container {
+    gap: 1em;
+  }
 }

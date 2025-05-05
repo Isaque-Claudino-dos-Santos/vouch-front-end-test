@@ -34,7 +34,7 @@
 
 @media screen and (max-width: 600px) {
   .checkbox  {
-    min-width: 34.5px;
-    min-height: 34.5px;
+    min-width: 25px;
+    min-height: 25px;
   }
 }
