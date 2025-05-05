@@ -43,6 +43,15 @@ export default function RootLayout({
           <CountDown />
         </header>
         <main className={styles.main}>{children}</main>
+        
+        <footer className={styles.footer}>
+          <div className={styles.profile}>
+            <p><span className={styles.tag}>Pagiana criada por</span>: Isaque Claudino dos Santos.</p>
+            <p><span className={styles.tag}>E-mail</span>: isaqueclaudino12@gmail.com</p>
+            <p><span className={styles.tag}>GitHub</span>: <a href="https://github.com/Isaque-Claudino-dos-Santos">Isaque-Claudino-dos-Santos</a></p>
+            <p><span className={styles.tag}>Linkedin</span>: <a href="https://www.linkedin.com/in/isaque-claudino-santos">isaque-claudino-santos</a></p>
+          </div>
+        </footer>
       </body>
     </html>
   );

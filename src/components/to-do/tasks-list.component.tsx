@@ -3,16 +3,21 @@
 import useGetTasksPaginated from "@/hooks/task/use-get-tasks-paginated";
 import TaskCard from "./task-card.component";
 import Task from "@/models/Task";
-import { KeyboardEvent, useEffect, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import useCreateTask from "@/hooks/task/use-task-create";
 import useDeleteTaskById from "@/hooks/task/use-delete-task-by-id";
 import useUpdateTask from "@/hooks/task/use-update-task";
 import styles from "./styles/task-list.module.css";
 import Input from "../form/input.component";
 import { Plus } from "lucide-react";
-import Textarea from "../form/textarea.component";
+import TaskStatusEnum from "@/enums/TaskStatusEnum";
+
+type Filters = {
+  status?: string;
+};
 
 export default function TasksList() {
+  const [filters, setFilters] = useState<Filters>({});
   const [isClient, setIsClient] = useState(false);
   const { data } = useGetTasksPaginated();
   const [tasks, setTasks] = useState<Task[]>(data);
@@ -49,13 +54,32 @@ export default function TasksList() {
     updateTask(task);
   };
 
+  const handleChengeFilterStatus = (event: ChangeEvent) => {
+    const target = event.target as HTMLSelectElement;
+    const status = target.value === "ALL" ? undefined : target.value;
+
+    setFilters((prev) => ({
+      ...prev,
+      status,
+    }));
+  };
+
   if (!isClient) {
     return <></>;
   }
 
   return (
-    <section>
+    <section className={styles.container}>
       <h2>Tasks List</h2>
+
+      <label className={styles.filterStatus}>
+        Status
+        <select onChange={handleChengeFilterStatus}>
+          <option>ALL</option>
+          <option value={TaskStatusEnum.TODO}>TODO</option>
+          <option value={TaskStatusEnum.COMPLETED}>COMPLETED</option>
+        </select>
+      </label>
 
       <div className={styles.addTask}>
         <Plus />
@@ -67,14 +91,23 @@ export default function TasksList() {
       </div>
 
       <ul className={styles.list}>
-        {tasks?.toReversed().map((task, index) => (
-          <TaskCard
-            key={index}
-            task={task}
-            onDelete={handleDelete}
-            onUpdate={handleUpdate}
-          />
-        ))}
+        {tasks
+          ?.toReversed()
+          .filter((task) => {
+            if (!filters.status) return true;
+
+            if (filters.status === task.status) return true;
+
+            return false;
+          })
+          .map((task, index) => (
+            <TaskCard
+              key={index}
+              task={task}
+              onDelete={handleDelete}
+              onUpdate={handleUpdate}
+            />
+          ))}
       </ul>
     </section>
   );

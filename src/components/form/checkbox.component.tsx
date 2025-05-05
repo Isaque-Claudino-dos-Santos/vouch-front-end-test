@@ -1,4 +1,3 @@
-import { Check } from "lucide-react";
 import styles from "./styles/checkbox.module.css";
 import { useState } from "react";
 
@@ -15,7 +14,7 @@ export default function Checkbox(props: CheckboxProps) {
   const handleClick = () => {
     setChecked(!checked);
 
-    if (onClick) onClick(checked);
+    if (onClick) onClick(!checked);
   };
 
   const custonStyleByChecked = checked
